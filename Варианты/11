@@ -1,0 +1,23 @@
+def permutations(s):
+    # Базовый случай: если строка состоит из 1 символа — только одна перестановка
+    if len(s) == 1:
+        return [s]
+    
+    result = []
+    
+    # Перебираем каждый символ строки как первый
+    for i in range(len(s)):
+        first_char = s[i]
+        # Остальная строка без выбранного символа
+        remaining = s[:i] + s[i+1:]
+        
+        # Рекурсивно получаем перестановки оставшейся части
+        for perm in permutations(remaining):
+            result.append(first_char + perm)
+    
+    return result
+
+
+# Тестирование
+text = "abc"
+print(permutations(text))
